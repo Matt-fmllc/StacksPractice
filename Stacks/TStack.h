@@ -53,7 +53,7 @@ namespace StackTemplate {
 	public:
 		// Public Methods
 		virtual inline bool Push(T const& NewItem);
-		virtual inline T Pop();
+		virtual inline bool Pop(T& Obj);
 		virtual inline bool IsEmpty();
 
 		// Constructors/Destructor
@@ -153,31 +153,31 @@ namespace StackTemplate {
 	// Retrieves an element from the Stack
 	// Utilizes threadsafe approach to retrieving elements
 	template<class T>
-	T TStack<T>::Pop()
+	bool TStack<T>::Pop(T& Obj)
 	{
 		std::lock_guard<std::mutex> lock(m_Mutex);
 
 		if (m_eAllocationType == eAT_DynamicMem) {
 			if (m_pRoot == nullptr) {
-				return (T)0;
+				return false;
 			}
 
 			TNode* pNode = m_pRoot;
 			m_pRoot = pNode->pNext;
-			T Data = pNode->Data;
+			Obj = pNode->Data;
 			delete pNode;
 
-			return Data;
+			return true;
 		}
 		else {
 			if ((m_pRoot - 1) < m_pNodes) {
 				// bottom of stack, empty stack
-				return (T)0;
+				return false;
 			}
 			else {
-				T Data = m_pRoot->Data;
+				Obj = m_pRoot->Data;
 				m_pRoot--;
-				return Data;
+				return true;
 			}
 		}
 	}

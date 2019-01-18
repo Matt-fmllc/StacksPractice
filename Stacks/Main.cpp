@@ -22,16 +22,21 @@ void PracticeStackTemplates()
 		Stack.Push(Data[x]);
 	}
 	for (int x = 0; x < DataSize; x++) {
-		printf("\n %d", Stack.Pop());
+		int data;
+		Stack.Pop(data);
+		printf("\n %d", data);
 	}
 	// test "Popping" from an empty stack
-	Stack.Pop();
+	int temp;
+	Stack.Pop(temp);
 	for (int x = DataSize - 1; x >= 0; x--) {
 		Stack.Push(Data[x]);
 	}
 	printf("\n");
 	for (int x = 0; x < DataSize; x++) {
-		printf("\n %d", Stack.Pop());
+		int data;
+		Stack.Pop(data);
+		printf("\n %d", data);
 	}
 
 	printf("\n--Dynamic Memory--");
@@ -44,16 +49,21 @@ void PracticeStackTemplates()
 		Stack2.Push(Dataf[x]);
 	}
 	for (int x = 0; x < DataSizef; x++) {
-		printf("\n %f", Stack2.Pop());
+		float data;
+		Stack2.Pop(data);
+		printf("\n %f", data);
 	}
 	// test "Popping" from an empty stack
-	Stack2.Pop();
+	float tempf;
+	Stack2.Pop(tempf);
 	for (int x = DataSizef - 1; x >= 0; x--) {
 		Stack2.Push(Dataf[x]);
 	}
 	printf("\n");
 	for (int x = 0; x < DataSizef; x++) {
-		printf("\n %f", Stack2.Pop());
+		float data;
+		Stack2.Pop(data);
+		printf("\n %f", data);
 	}
 
 }
