@@ -79,7 +79,7 @@ namespace StackTemplate {
 	TStack<T>::TStack(AllocationType _eAllocType, int _iStackSize) :
 		m_pRoot(nullptr), m_pNodes(nullptr), m_iStackSize(-1), m_eAllocationType(eAT_Illegal)
 	{
-		m_Mutex.lock();
+		std::lock_guard<std::mutex> lock(m_Mutex);
 		
 		assert(_iStackSize > 0);
 		assert(_eAllocType > eAT_Illegal && _eAllocType < eAT_Max);
@@ -91,7 +91,6 @@ namespace StackTemplate {
 			m_pNodes = m_pRoot;
 		}
 
-		m_Mutex.unlock();
 	}
 
 	// Destructor
@@ -118,19 +117,17 @@ namespace StackTemplate {
 	template<class T>
 	bool TStack<T>::Push(T const& NewItem)
 	{
-		m_Mutex.lock();
+		std::lock_guard<std::mutex> lock(m_Mutex);
 
 		if (m_eAllocationType == eAT_DynamicMem) {
 			TNode* pNode = new TNode();
 			if (!pNode) {
-				m_Mutex.unlock();
 				return false;
 			}
 			pNode->Data = NewItem;
 			pNode->pNext = m_pRoot;
 			m_pRoot = pNode;
 
-			m_Mutex.unlock();
 			return true;
 		}
 		else {
@@ -145,11 +142,8 @@ namespace StackTemplate {
 			m_pRoot->Data = NewItem;
 			m_pRoot->pNext = nullptr;
 
-			m_Mutex.unlock();
 			return true;
 		}
-
-		m_Mutex.unlock();
 
 		return false;
 	}
@@ -161,11 +155,10 @@ namespace StackTemplate {
 	template<class T>
 	T TStack<T>::Pop()
 	{
-		m_Mutex.lock();
+		std::lock_guard<std::mutex> lock(m_Mutex);
 
 		if (m_eAllocationType == eAT_DynamicMem) {
 			if (m_pRoot == nullptr) {
-				m_Mutex.unlock();
 				return (T)0;
 			}
 
@@ -174,19 +167,16 @@ namespace StackTemplate {
 			T Data = pNode->Data;
 			delete pNode;
 
-			m_Mutex.unlock();
 			return Data;
 		}
 		else {
 			if ((m_pRoot - 1) < m_pNodes) {
 				// bottom of stack, empty stack
-				m_Mutex.unlock();
 				return (T)0;
 			}
 			else {
 				T Data = m_pRoot->Data;
 				m_pRoot--;
-				m_Mutex.unlock();
 				return Data;
 			}
 		}
