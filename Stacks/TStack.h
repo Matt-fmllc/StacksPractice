@@ -54,7 +54,7 @@ namespace StackTemplate {
 		// Public Methods
 		virtual inline bool Push(T const& NewItem);
 		virtual inline bool Pop(T& Obj);
-		virtual inline bool IsEmpty();
+		virtual inline bool IsEmpty() noexcept;
 
 		// Constructors/Destructor
 		TStack();
@@ -186,7 +186,7 @@ namespace StackTemplate {
 	// IsEmpty
 	// Determines if the stack is empty
 	template<class T>
-	bool TStack<T>::IsEmpty()
+	bool TStack<T>::IsEmpty() noexcept
 	{
 		if (m_eAllocationType == eAT_DynamicMem) {
 			if (!m_pRoot) {

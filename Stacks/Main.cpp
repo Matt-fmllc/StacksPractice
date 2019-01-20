@@ -2,11 +2,28 @@
 
 #include "pch.h"
 #include <iostream>
-
+#include <cassert>
 #include "Stacks.h"
 #include "TStack.h"
 using namespace StackTemplate;
 
+void Practice()
+{
+	TStack<int> Stack(TStack<int>::eAT_DynamicMem, 1024);
+	std::srand(7654321);
+	int iTestVals[10000] = { 0 };
+
+	for (int x = 0; x < 10000; x++) {
+		iTestVals[x] = std::rand();
+		Stack.Push(iTestVals[x]);
+	}
+
+	int iVal;
+	for (int x = 0; x < 10000; x++) {
+		Stack.Pop(iVal);
+		assert(iVal == iTestVals[(10000-1) - x]);
+	}
+}
 
 void PracticeStackTemplates()
 {
