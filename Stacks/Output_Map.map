@@ -1,6 +1,6 @@
  Stacks
 
- Timestamp is 5c43d21a (Sat Jan 19 17:42:50 2019)
+ Timestamp is 5c4403da (Sat Jan 19 21:15:06 2019)
 
  Preferred load address is 00400000
 
@@ -660,12 +660,12 @@
  0000:fffe0000       __guard_fids__             00400000     MSVCRTD:throw_bad_alloc.obj
  0000:fffe0004       __guard_fids__             00400004     MSVCRTD:exe_main.obj
  0000:fffe0008       __guard_fids__             00400008     MSVCRTD:exe_main.obj
- 0002:00000be8       $LN13                      00411be8     Main.obj
- 0002:00000bf0       $LN12                      00411bf0     Main.obj
- 0002:00000bfc       $LN10                      00411bfc     Main.obj
- 0002:00000e38       $LN13                      00411e38     Main.obj
- 0002:00000e40       $LN12                      00411e40     Main.obj
- 0002:00000e4c       $LN10                      00411e4c     Main.obj
+ 0002:00000bec       $LN13                      00411bec     Main.obj
+ 0002:00000bf4       $LN12                      00411bf4     Main.obj
+ 0002:00000c00       $LN10                      00411c00     Main.obj
+ 0002:00000e3c       $LN13                      00411e3c     Main.obj
+ 0002:00000e44       $LN12                      00411e44     Main.obj
+ 0002:00000e50       $LN10                      00411e50     Main.obj
  0002:00001a64       $LN13                      00412a64     Main.obj
  0002:00001a6c       $LN12                      00412a6c     Main.obj
  0002:00001a78       $LN11                      00412a78     Main.obj

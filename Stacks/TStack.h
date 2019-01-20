@@ -86,7 +86,7 @@ namespace StackTemplate {
 		m_eAllocationType = _eAllocType;
 		m_iStackSize = _iStackSize;
 		if (m_eAllocationType == eAT_FixedMem) {
-			m_pRoot = (TNode*) malloc(sizeof(TNode) * _iStackSize);
+			m_pRoot = (TNode*) malloc(sizeof(TNode) * (_iStackSize + 1));
 			assert(m_pRoot);
 			m_pNodes = m_pRoot;
 		}
